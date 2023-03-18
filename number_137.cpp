@@ -1,8 +1,12 @@
+/*
+Given an integer array nums where every element appears three times except for one, which appears exactly once. 
+Find the single element and return it.
+
+You must implement a solution with a linear runtime complexity and use only constant extra space.
+*/
+
 #include <vector>
 
-//137. Single Number II
-//time complexity O(32*n) = O(n)
-//space complexity O(1)
 int singleNumber(std::vector<int>& nums) {
     int size_of_int = sizeof(int) * 8;
     int tmp = size_of_int;
@@ -25,3 +29,18 @@ int singleNumber(std::vector<int>& nums) {
     }
     return result;
 }
+
+/*
+Example 1:
+
+Input: nums = [2,2,3,2]
+Output: 3
+
+Example 2:
+
+Input: nums = [0,1,0,1,0,1,99]
+Output: 99
+*/
+
+//time complexity O(32*n) = O(n)
+//space complexity O(1)

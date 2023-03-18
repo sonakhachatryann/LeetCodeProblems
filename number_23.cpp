@@ -1,6 +1,19 @@
-//23. Merge k Sorted Lists
-//time complexity O(n*len*log(len)), where n = first.size + second.size, len = lists.size
-//space complexity O(n*len*log(len))
+/*
+You are given an array of k linked-lists lists, each linked-list is sorted in ascending order.
+
+Merge all the linked-lists into one sorted linked-list and return it.
+*/
+
+#include <vector>
+
+struct ListNode {
+    int val;
+    ListNode *next; 
+    ListNode() : val(0), next(nullptr) {}
+    ListNode(int x) : val(x), next(nullptr) {}
+    ListNode(int x, ListNode *next) : val(x), next(next) {}
+ };
+
 ListNode* merge_two_lists(ListNode* first, ListNode* second) {
     if(first == nullptr){
         return second;
@@ -45,7 +58,7 @@ ListNode* merge_two_lists(ListNode* first, ListNode* second) {
     return result;
 }
     
-ListNode* mergeKLists(vector<ListNode*>& lists) {
+ListNode* mergeKLists(std::vector<ListNode*>& lists) {
     if (lists.empty()) {
         return nullptr;
     }
@@ -58,3 +71,19 @@ ListNode* mergeKLists(vector<ListNode*>& lists) {
     }
     return lists.front();
 }
+
+/*
+Input: lists = [[1,4,5],[1,3,4],[2,6]]
+Output: [1,1,2,3,4,4,5,6]
+Explanation: The linked-lists are:
+[
+  1->4->5,
+  1->3->4,
+  2->6
+]
+merging them into one sorted list:
+1->1->2->3->4->4->5->6
+*/
+
+//time complexity O(n*len*log(len)), where n = first.size + second.size, len = lists.size
+//space complexity O(n*len*log(len))
