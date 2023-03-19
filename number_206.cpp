@@ -48,5 +48,5 @@ Input: head = []
 Output: []
 */
 
-//time complexity O()
+//time complexity O(n)
 //space complexity O(n)
