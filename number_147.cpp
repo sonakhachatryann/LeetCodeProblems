@@ -54,5 +54,5 @@ Input: head = [-1,5,3,4,0]
 Output: [-1,0,3,4,5]
 */
 
-//time complexity O(n)
+//time complexity O(n^2)
 //space complexity O(1)
