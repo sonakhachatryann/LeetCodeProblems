@@ -53,7 +53,7 @@ public:
         else {
             tmp = tmp->next;
         }
-        deleteDuplicates(tmp);
+        ListNode* tmp2 = deleteDuplicates(tmp);
         return head;
     }
 };
