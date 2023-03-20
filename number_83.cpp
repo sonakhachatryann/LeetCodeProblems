@@ -11,7 +11,7 @@ struct ListNode {
     ListNode(int x, ListNode *next) : val(x), next(next) {}
  };
 
-class Solution {
+class Solution1 {
 public:
     ListNode* deleteDuplicates(ListNode* head) {
         ListNode* tmp = head;
@@ -34,6 +34,31 @@ public:
         return head;
     }
 };
+//time complexity O(n)
+//space complexity O(1)
+
+
+class Solution2 {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        ListNode* tmp = head;
+        if (!tmp || !tmp->next) {
+            return tmp;
+        }
+        if (tmp->val == tmp->next->val) {
+            ListNode* cur = tmp->next;
+            tmp->next = cur->next;
+            delete cur;
+        } 
+        else {
+            tmp = tmp->next;
+        }
+        deleteDuplicates(tmp);
+        return head;
+    }
+};
+//time complexity O(n)
+//space complexity O(n)
 
 /*
 Example 1:
@@ -45,5 +70,3 @@ Input: head = [1,1,2,3,3]
 Output: [1,2,3]
 */
 
-//time complexity O(n)
-//space complexity O(1)
