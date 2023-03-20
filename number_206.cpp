@@ -2,6 +2,8 @@
 Given the head of a singly linked list, reverse the list, and return the reversed list.
 */
 
+#include <vector>
+
 struct ListNode {
     int val;
     ListNode *next; 
@@ -10,7 +12,7 @@ struct ListNode {
     ListNode(int x, ListNode *next) : val(x), next(next) {}
  };
 
-class Solution {
+class Solution1 {
 public:
     ListNode* reverseList(ListNode* head) {
         if (head) {
@@ -30,6 +32,70 @@ public:
         return head;
     }
 };
+//time complexity O(n)
+//space complexity O(n)
+
+
+class Solution2 {
+public:
+    ListNode* reverseList(ListNode* head) {
+        if (!head) {
+            return head;
+        }
+        ListNode* tmp = head;
+        int size{};
+        while (tmp) {
+            tmp = tmp->next;
+            ++size;
+        }
+        tmp = head;
+        std::vector<ListNode*> vec(size);
+        for (int i = 0; i < size; ++i) {
+            vec[i] = tmp;
+            tmp = tmp->next;
+        }
+        for (int i = size - 1; i > 0; --i) {
+            vec[i]->next = vec[i - 1];
+        }
+        head = vec[size - 1];
+        vec[0]->next = nullptr;
+        return head;
+    }
+};
+//time complexity O(n)
+//space complexity O(n)
+
+
+class Solution3 {
+public:
+    ListNode* reverseList(ListNode* head) {
+        if (head && head->next) {
+            ListNode* first = head;
+            ListNode* second = first->next;
+            ListNode* third = second->next;
+            first->next = nullptr;
+            second->next = first;
+            first = second;
+            second = third;
+            if (!third) {
+                return first;
+            }
+            third = third->next;
+            while (third) {
+                second->next = first;
+                first = second;
+                second = third;
+                third = third->next;
+            }
+            second->next = first;
+            head = second;
+        }
+        return head;
+    }
+};
+//time complexity O(n)
+//space complexity O(1)
+
 
 /*
 Example 1:
@@ -47,6 +113,3 @@ Example 3:
 Input: head = []
 Output: []
 */
-
-//time complexity O(n)
-//space complexity O(n)
