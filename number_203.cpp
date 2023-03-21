@@ -11,7 +11,7 @@ struct ListNode {
     ListNode(int x, ListNode *next) : val(x), next(next) {}
  };
 
-class Solution {
+class Solution1 {
 public:
     ListNode* removeElements(ListNode* head, int val) {
         if (head) {
@@ -38,6 +38,28 @@ public:
         return head;
     }
 };
+//time complexity O(n)
+//space complexity O(1)
+
+
+class Solution2 {
+public:
+    ListNode* removeElements(ListNode* head, int val) {
+        if (!head) {
+            return nullptr;
+        }
+        head->next = removeElements(head->next, val);
+        if (head->val == val) {
+            ListNode* tmp = head;
+            head = head->next;
+            delete tmp;
+        }      
+        return head;
+    }
+};
+//time complexity O(n)
+//space complexity O(n)
+
 
 /*
 Example 1:
@@ -55,6 +77,3 @@ Example 3:
 Input: head = [7,7,7,7], val = 7
 Output: []
 */
-
-//time complexity O(n)
-//space complexity O(1)
