@@ -14,7 +14,7 @@ struct ListNode {
     ListNode(int x, ListNode *next) : val(x), next(next) {}
  };
 
- class Solution {
+ class Solution1 {
 public:
     ListNode* mergeTwoLists(ListNode* first, ListNode* second) {
         if(first == nullptr){
@@ -60,6 +60,32 @@ public:
         return result;
     }
 };
+//time complexity O(n+m)
+//space Complexity O(n)
+
+
+class Solution2 {
+public:
+    ListNode* mergeTwoLists(ListNode* first, ListNode* second) {
+        if (!first) {
+            return second;
+        }
+        if (!second) {
+            return first;
+        }
+        if (first->val <= second->val) {
+            first->next = mergeTwoLists(first->next, second);
+            return first;
+        }
+        else {
+            second->next = mergeTwoLists(first, second->next);
+            return second;
+        }
+    }
+};
+//time complexity O(n+m)
+//space complexity O(1)
+
 
 /*
 Example 1:
@@ -77,6 +103,3 @@ Example 3:
 Input: list1 = [], list2 = [0]
 Output: [0]
 */
-
-//time complexity O(n)
-//space Complexity O(n)
