@@ -80,7 +80,7 @@ public:
     }
 };
 //time complexity O(n^2)
-//space complexity O(1)
+//space complexity O(n)
 
 /*
 Example 1:

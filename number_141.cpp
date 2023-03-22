@@ -10,7 +10,7 @@ struct ListNode {
     ListNode(int x, ListNode *next) : val(x), next(next) {}
  };
 
-class Solution {
+class Solution1 {
 public:
     bool hasCycle(ListNode *head) {
         if (!head) {
@@ -28,6 +28,31 @@ public:
         return false;
     }
 };
+//time complexity O(n)
+//space complexity O(1)
+
+class Solution2 {
+public:
+    bool hasCycleHelper(ListNode* first, ListNode* second) {
+        if (!first || !first->next) {
+            return false;
+        }
+        if (first == second) {
+            return true;
+        }
+        return hasCycleHelper(first->next->next, second->next);
+    }
+    
+    bool hasCycle(ListNode *head) {
+        if (!head || !head->next) {
+            return false;
+        }
+        return hasCycleHelper(head->next->next, head->next);
+    }
+};
+
+//time complexity O(n)
+//space complexity O(n)
 
  /*
  Example 1:
@@ -48,6 +73,3 @@ Input: head = [1], pos = -1
 Output: false
 Explanation: There is no cycle in the linked list.
  */
-
-//time complexity O(n)
-//space complexity O(1)
