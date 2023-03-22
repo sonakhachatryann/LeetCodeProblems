@@ -96,6 +96,21 @@ public:
 //time complexity O(n)
 //space complexity O(1)
 
+class Solution4 {
+public:
+    ListNode* reverseList(ListNode* head) {
+        if (!head || !head->next) {
+            return head;
+        }
+        ListNode* reversed = reverseList(head->next);
+        head->next->next = head;
+        head->next = nullptr;
+        return reversed;
+    }
+};
+//time complexity O(n)
+//space complexity O(n)
+
 
 /*
 Example 1:
