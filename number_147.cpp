@@ -11,7 +11,7 @@ struct ListNode {
     ListNode(int x, ListNode *next) : val(x), next(next) {}
  };
 
- class Solution {
+ class Solution1 {
 public:
     ListNode* insertionSortList(ListNode* head) {
         if (head) {
@@ -41,6 +41,46 @@ public:
         return head;
     }
 };
+//time complexity O(n^2)
+//space complexity O(1)
+
+
+class Solution2 {
+public:
+    ListNode* insertionSortList(ListNode* head) {
+        if (!head || !head->next) {
+            return head; 
+        }
+        head->next = insertionSortList(head->next);
+        ListNode* cur = head->next;
+        ListNode* prev = cur;
+        while (cur) {
+            if (head->val <= head->next->val) {
+                break;
+            }
+            if (head->val <= cur->val) {
+                ListNode* tmp = head->next;
+                head->next = cur;
+                prev->next = head;
+                head = tmp;
+                break;
+            }
+            else {
+                prev = cur;
+                cur = cur->next;
+            }
+        }
+        if (!cur) {
+            ListNode* tmp = head->next;
+            prev->next = head;
+            head->next = nullptr;
+            head = tmp;
+        }
+        return head;
+    }
+};
+//time complexity O(n^2)
+//space complexity O(1)
 
 /*
 Example 1:
@@ -53,6 +93,3 @@ Example 2:
 Input: head = [-1,5,3,4,0]
 Output: [-1,0,3,4,5]
 */
-
-//time complexity O(n^2)
-//space complexity O(1)
