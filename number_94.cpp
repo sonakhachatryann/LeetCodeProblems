@@ -22,16 +22,16 @@ public:
         TreeNode* cur = root;
         while (cur || !stack.empty()) {
             if (cur != nullptr) {
-			stack.push(cur);
-			cur = cur->left;
+			    stack.push(cur);
+			    cur = cur->left;
 		    }
 		    else {
 			    cur = stack.top();
 			    stack.pop();
 			    result.push_back(cur->val);
-			    cur = cur->right;
+                cur = cur->right;
 		    }
-        }  
+        }
         return result;
     }
 };
