@@ -60,8 +60,8 @@ public:
         return result;
     }
 };
-//time complexity O(n+m)
-//space Complexity O(n)
+//time complexity O(n + m)
+//space Complexity O(n + m)
 
 
 class Solution2 {
