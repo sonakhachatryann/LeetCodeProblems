@@ -41,19 +41,15 @@ public:
 class Solution2 {
 public:
     ListNode* deleteDuplicates(ListNode* head) {
-        ListNode* tmp = head;
-        if (!tmp || !tmp->next) {
-            return tmp;
+        if (!head || !head->next) {
+            return head;
         }
-        if (tmp->val == tmp->next->val) {
-            ListNode* cur = tmp->next;
-            tmp->next = cur->next;
-            delete cur;
-        } 
-        else {
-            tmp = tmp->next;
+        head->next = deleteDuplicates(head->next);
+        if (head->val == head->next->val) {
+            ListNode* tmp = head;
+            head = head->next;
+            delete tmp;
         }
-        ListNode* tmp2 = deleteDuplicates(tmp);
         return head;
     }
 };
