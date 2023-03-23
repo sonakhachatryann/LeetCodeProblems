@@ -15,7 +15,7 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-class Solution {
+class Solution1 {
 public:
     int height(TreeNode* root) {
         if (!root) {
@@ -65,6 +65,28 @@ public:
             }
         }
         return true;
+    }
+};
+
+class Solution2 {
+public:
+    int maxDepth(TreeNode* root) {
+        if (!root) {
+		    return 0;
+	    }        
+	    int first = maxDepth(root->left);
+        int second = maxDepth(root->right);
+        return first > second ? first + 1 : second + 1;
+    }
+    
+    bool isBalanced(TreeNode* root) {
+        if (!root) {
+            return true;
+        }
+        if (abs(maxDepth(root->left) - maxDepth(root->right)) > 1) {
+            return false;
+        }
+        return isBalanced(root->left) && isBalanced(root->right);
     }
 };
 

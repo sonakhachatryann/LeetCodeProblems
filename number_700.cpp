@@ -14,7 +14,7 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  };
 
-class Solution {
+class Solution1 {
 public:
     TreeNode* searchBST(TreeNode* root, int val) {
         TreeNode* tmp = root;
@@ -32,6 +32,29 @@ public:
         return nullptr;        
     }
 };
+//time complexity O(log n)
+//space complexity O(1)
+
+class Solution2 {
+public:
+    TreeNode* searchBST(TreeNode* root, int val) {
+        if (root == nullptr) {
+            return nullptr;
+        }
+        if (root->val == val) {
+            return root;
+        }   
+        if (root->val < val) {
+            return searchBST(root->right, val);
+        } 
+        else if (root->val > val) {
+            return searchBST(root->left, val);
+        }
+        return nullptr;
+    }
+};
+//time complexity O(log n)
+//space complexity O(n)
 
 /*
 Example 1:
@@ -45,5 +68,3 @@ Input: root = [4,2,7,1,3], val = 5
 Output: []
 */
 
-//time complexity O(log n)
-//space complexity O(1)

@@ -16,11 +16,11 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-class Solution {
+class Solution1 {
 public:
     int maxDepth(TreeNode* root) {
         if (root == nullptr) {
-		return 0;
+			return 0;
 	    }
 	    std::queue<TreeNode*> queue;
 	    queue.push(root);
@@ -47,6 +47,22 @@ public:
         }
     }
 };
+//time complexity O(n)
+//space complexity O(n)
+
+class Solution2 {
+public:
+    int maxDepth(TreeNode* root) {
+        if (!root) {
+		    return 0;
+	    }        
+	    int first = maxDepth(root->left);
+        int second = maxDepth(root->right);
+        return first > second ? first + 1 : second + 1;
+    }
+};
+//time complexity O(n)
+//space complexity O(n)
 
 /*
 Example 1:
@@ -59,6 +75,3 @@ Example 2:
 Input: root = [1,null,2]
 Output: 2
 */
-
-//time complexity O(n)
-//space complexity O(n)

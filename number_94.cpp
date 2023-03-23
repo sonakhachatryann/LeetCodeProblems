@@ -2,6 +2,9 @@
 Given the root of a binary tree, return the inorder traversal of its nodes' values.
 */
 
+#include <vector>
+#include <stack>
+
 struct TreeNode {
     int val;
     TreeNode *left;
@@ -11,10 +14,7 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-#include <vector>
-#include <stack>
-
-class Solution {
+class Solution1 {
 public:
     std::vector<int> inorderTraversal(TreeNode* root) {
         std::vector<int> result;
@@ -33,6 +33,24 @@ public:
 		    }
         }
         return result;
+    }
+};
+
+class Solution2 {
+public:
+    std::vector<int> inorderTraversal(TreeNode* root) {
+        std::vector<int> result;
+        inorder(root, result);
+        return result;
+    }
+    
+    void inorder(TreeNode* root, std::vector<int>& result) {
+        if (root == nullptr) {
+            return;
+        }
+        inorder(root->left, result);
+        result.push_back(root->val);
+        inorder(root->right, result);
     }
 };
 
